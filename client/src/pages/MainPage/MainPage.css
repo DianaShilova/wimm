@@ -1,0 +1,120 @@
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.transactions-container {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.transaction-item:hover {
+  transform: translateY(-2px);
+}
+
+.transaction-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.transaction-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.transaction-amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2ecc71;
+}
+
+.transaction-date {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.transaction-category {
+  display: inline-block;
+  background: #e9ecef;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.transaction-description {
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 2rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .transaction-item {
+    padding: 1rem;
+  }
+
+  .add-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
