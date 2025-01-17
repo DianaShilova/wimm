@@ -1,7 +1,7 @@
-echo "node_modules/
+node_modules/
 .env
 logs/
 *.log
 coverage/
 dist/
-build/" > server/.gitignore
+build/
