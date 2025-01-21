@@ -8,8 +8,8 @@ const Home: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const hardcodedLogin = 'admin';
-  const hardcodedPassword = 'password123';
+  const hardcodedLogin = import.meta.env.VITE_FRONTEND_USERNAME
+  const hardcodedPassword = import.meta.env.VITE_FRONTEND_PASSWORD ;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

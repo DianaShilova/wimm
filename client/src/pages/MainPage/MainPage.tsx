@@ -34,8 +34,8 @@ const MainPage: React.FC = () => {
         <div className="wallet-container">{wallet}</div>
         <h1>Транзакции</h1>
         <div className="transactions-container">
-            { expenses && expenses.map(expense => (
-                <div key={expense.id} className="transaction-item">
+            { expenses && expenses.map((expense, index) => (
+                <div key={index} className="transaction-item">
                     <div className="transaction-category">{expense.category}</div>
                     <div className="transaction-title">{expense.title}</div>
                     <div className="transaction-date">{format(new Date(expense.date!), 'dd MMMM', { locale: ru })}</div>
