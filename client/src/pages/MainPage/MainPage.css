@@ -90,6 +90,22 @@ h1 {
   transition: all 0.3s ease;
 }
 
+.wallet-button {
+  position: fixed;
+  top: 2rem;
+  right: 10rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
 .add-button:hover {
   background-color: #2980b9;
   transform: translateY(-2px);

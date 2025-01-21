@@ -1,6 +1,7 @@
 import React from 'react';
 import './Modal.css';
-import { useAddExpenseMutation } from '../../api/transactions';
+import { useAddExpenseMutation } from '../../../api/transactions';
+import { useAddToWalletMutation } from '../../../api/wallet';
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const [addExpense] = useAddExpenseMutation();
+    const [reductionOfWallet] = useAddToWalletMutation();
     const [formData, setFormData] = React.useState({
         title: '',
         amount: 0,
@@ -33,6 +35,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 ...formData,
                 amount: Number(formData.amount)
             });
+            await reductionOfWallet(Number(formData.amount) * -1);
             onClose();
         } catch (err) {
             console.error('Ошибка при добавлении транзакции:', err);

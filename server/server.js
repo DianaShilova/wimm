@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import expenseRoutes from './routes/expense.js';
+import walletRoutes from './routes/wallet.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 app.use('/api', expenseRoutes);
+app.use('/api', walletRoutes);
 
 
 mongoose.connect(process.env.MONGODB_URI)
