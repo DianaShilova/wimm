@@ -14,6 +14,15 @@ h1 {
   font-weight: 600;
 }
 
+.balance-item {
+  display: flex;
+  align-items: center;
+}
+
+.balance-title {
+  padding: 10px;
+}
+
 .transactions-container {
   display: grid;
   gap: 1.5rem;

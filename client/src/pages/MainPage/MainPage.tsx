@@ -11,7 +11,8 @@ const MainPage: React.FC = () => {
     const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
     const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
     const { data: expenses } = useGetExpensesQuery();
-    const { data: wallet } = useGetWalletQuery();
+  
+    const { data: wallets } = useGetWalletQuery();
 
   const handleOpenModal = () => {
     setIsTransactionModalOpen(true);
@@ -31,7 +32,14 @@ const MainPage: React.FC = () => {
         <button className="wallet-button" onClick={handleOpenWalletModal}>
             + Пополнить кошелек
         </button>
-        <div className="wallet-container">{wallet}</div>
+        <div  className="balance-container">
+          { wallets && wallets.map((wallet, index) => (
+              <div key={index} className="balance-item">
+                <div className="balance-title">{wallet?.balance || wallet?.amount}</div>
+                <div className="balance-amount">{wallet?.name || wallet?.account}</div>
+              </div>
+          ))}
+        </div>
         <h1>Транзакции</h1>
         <div className="transactions-container">
             { expenses && expenses.map((expense, index) => (

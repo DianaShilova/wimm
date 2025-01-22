@@ -5,5 +5,9 @@ export interface Expense {
     category: string;
     date?: string;
     description?: string;
-  }
+}
+
+export interface WalletBalance {
+  [key: string]: number;
+}
   

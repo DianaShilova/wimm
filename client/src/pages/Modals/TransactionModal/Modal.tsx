@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.css';
 import { useAddExpenseMutation } from '../../../api/transactions';
-import { useAddToWalletMutation } from '../../../api/wallet';
+import { useAddToWalletMutation, useGetWalletQuery } from '../../../api/wallet';
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,17 +11,19 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const [addExpense] = useAddExpenseMutation();
     const [reductionOfWallet] = useAddToWalletMutation();
+    const { data: wallets, isLoading } = useGetWalletQuery();
     const [formData, setFormData] = React.useState({
         title: '',
         amount: 0,
         date: '',
         category: '',
         description: '',
+        account: '',
     });
 
     if (!isOpen) return null;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -35,7 +37,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 ...formData,
                 amount: Number(formData.amount)
             });
-            await reductionOfWallet(Number(formData.amount) * -1);
+            await reductionOfWallet({
+                amount: Number(formData.amount) * -1,
+                account: formData.account,
+            });
             onClose();
         } catch (err) {
             console.error('Ошибка при добавлении транзакции:', err);
@@ -47,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
                     <h2>Добавить транзакцию</h2>
-                    <button className="close-button" onClick={onClose}>&times;</button>
+                    <button className="close-button" onClick={onClose}>×</button>
                 </div>
                 
                 <form className="form" onSubmit={handleSubmit}>
@@ -73,6 +78,24 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                             onChange={handleChange}
                             placeholder="Введите сумму" 
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="label">Кошелек</label>
+                        <select 
+                            name="account"
+                            className="input"
+                            value={formData.account}
+                            onChange={handleChange}
+                        >
+                            <option value="">Выберите кошелек</option>
+                            {!isLoading && wallets && wallets.map((wallet, index) => (
+                                <option key={index} value={wallet.account}>
+                                    {wallet.account} (Баланс: {wallet.amount})
+                                </option>
+                            ))}
+                        </select>
+                        {isLoading && <span>Загрузка кошельков...</span>}
                     </div>
 
                     <div className="form-group">
@@ -115,5 +138,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         </div>
     );
 };
-
 export default Modal;
