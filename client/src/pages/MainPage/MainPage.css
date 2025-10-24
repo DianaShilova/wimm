@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   background-color: #f8f9fa;
-  min-height: 100vh;
+  min-height: 94vh;
 }
 
 h1 {
@@ -84,6 +84,60 @@ h1 {
   line-height: 1.4;
 }
 
+.categories-container {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.category-item:hover {
+  transform: translateY(-2px);
+}
+
+.category-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.category-spending {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e74c3c;
+  display: flex;
+  margin: 0;
+}
+
+.category-planned {
+  color: black;
+  margin: 0;
+}
+
+.category-actual {
+  margin: 0;
+}
+
+.no-categories {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+  font-size: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .add-button {
   position: fixed;
   bottom: 2rem;
@@ -102,12 +156,12 @@ h1 {
 .wallet-button {
   position: fixed;
   top: 2rem;
-  right: 10rem;
+  right: 2rem;
   background-color: #3498db;
   color: white;
   border: none;
   border-radius: 50px;
-  padding: 1rem 2rem;
+  padding: 10px 14px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -125,6 +179,57 @@ h1 {
   transform: translateY(0);
 }
 
+.center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
+}
+
+.balance-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+.add-expense-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-category-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 14px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-expense-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+}
+
 @media (max-width: 768px) {
   .main-container {
     padding: 1rem;
@@ -138,8 +243,30 @@ h1 {
     padding: 1rem;
   }
 
-  .add-button {
+  .balance-display {
+    font-size: 40px;
+  }
+
+  .add-expense-button {
     padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    width: 200px;
+  }
+
+  .category-item {
+    padding: 1rem;
+  }
+
+  .category-name {
+    font-size: 1rem;
+  }
+
+  .category-spending {
+    font-size: 1rem;
+  }
+
+  .no-categories {
+    padding: 1.5rem;
     font-size: 0.9rem;
   }
 }
