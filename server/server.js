@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import path from 'path';
 import expenseRoutes from './routes/expense.js';
 import walletRoutes from './routes/wallet.js';
 import categoryRoutes from './routes/category.js';
@@ -25,8 +26,28 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
+app.use(
+  express.static(
+    path.join(path.dirname(new URL(import.meta.url).pathname), '../client/dist')
+  )
+);
+
 app.get('/', (req, res) => {
-  res.send('Сервер запущен!');
+  res.sendFile(
+    path.join(
+      path.dirname(new URL(import.meta.url).pathname),
+      '../client/dist/index.html'
+    )
+  );
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(
+    path.join(
+      path.dirname(new URL(import.meta.url).pathname),
+      '../client/dist/index.html'
+    )
+  );
 });
 
 app.listen(PORT, () => {
