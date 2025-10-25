@@ -14,7 +14,11 @@ RUN npm install
 COPY server/package*.json ./server/
 RUN cd server && npm install
 
-# Copy client and build
+# Copy client package.json and install
+COPY client/package*.json ./client/
+RUN cd client && npm install
+
+# Copy client source and build
 COPY client/ ./client/
 RUN npm run build
 
